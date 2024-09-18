@@ -28,6 +28,14 @@ const Topbar = () => {
             </a>
           </div>
           <div>
+            <a
+              href="#"
+              className="text-gray-600  hover:text-black flex flex-col items-center"
+            >
+              <p className="font-medium">Resume Checker</p>
+            </a>
+          </div>
+          <div>
             <a href="#" className="text-gray-600 hover:text-black">
               <p className="font-medium">Post</p>
             </a>
