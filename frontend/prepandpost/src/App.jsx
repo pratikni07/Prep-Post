@@ -11,6 +11,8 @@ export default function App() {
       <Topbar />
       <QuizPage />
       {/* <CodeEditor /> */}
+      {/* <CodeEditor /> */}
+
       {/* <PostPage /> */}
       {/* <Networks /> */}
       {/* <ResumeChecker /> */}
