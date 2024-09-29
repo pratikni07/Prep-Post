@@ -1,0 +1,45 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/emailcampaign
+      - REDIS_URL=redis://redis:6379
+      - JWT_SECRET=your_jwt_secret
+      - SMTP_HOST=your_smtp_host
+      - SMTP_PORT=your_smtp_port
+      - SMTP_USER=your_smtp_user
+      - SMTP_PASS=your_smtp_password
+      - EMAIL_FROM=your_email@example.com
+
+  worker:
+    build: .
+    command: node worker.js
+    depends_on:
+      - mongodb
+      - redis
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/emailcampaign
+      - REDIS_URL=redis://redis:6379
+      - SMTP_HOST=your_smtp_host
+      - SMTP_PORT=your_smtp_port
+      - SMTP_USER=your_smtp_user
+      - SMTP_PASS=your_smtp_password
+      - EMAIL_FROM=your_email@example.com
+
+  mongodb:
+    image: mongo:4.4
+    volumes:
+      - mongodb_data:/data/db
+
+  redis:
+    image: redis:6
+
+volumes:
+  mongodb_data:
