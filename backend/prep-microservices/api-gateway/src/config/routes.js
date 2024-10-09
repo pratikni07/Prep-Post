@@ -20,13 +20,13 @@ module.exports = {
       "^/api/coding": "/coding",
     },
   },
-  "/api/programming": {
-    target: "http://programming-service:3004",
-    changeOrigin: true,
-    pathRewrite: {
-      "^/api/programming": "/programming",
-    },
-  },
+  // "/api/programming": {
+  //   target: "http://programming-service:3004",
+  //   changeOrigin: true,
+  //   pathRewrite: {
+  //     "^/api/programming": "/programming",
+  //   },
+  // },
   "/api/companies": {
     target: "http://company-service:3005",
     changeOrigin: true,

@@ -10,7 +10,7 @@ export default function App() {
   return (
     <>
       <Topbar />
-      <Home />
+      {/* <Home /> */}
       {/* <QuizPage /> */}
       {/* <CodeEditor /> */}
       {/* <CodeEditor /> */}

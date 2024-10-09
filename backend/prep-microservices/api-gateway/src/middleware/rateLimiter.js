@@ -1,12 +1,19 @@
 const rateLimit = require("express-rate-limit");
-const RedisStore = require("rate-limit-redis");
-const Redis = require("ioredis");
+const RedisStore = require("rate-limit-redis").default;
+const { createClient } = require("redis");
 const config = require("../config");
 
-const redisClient = new Redis(config.redisUrl);
+// Create a Redis client
+const redisClient = createClient({
+  url: config.redisUrl,
+});
+
+// Connect to Redis
+redisClient.connect().catch(console.error);
 
 const limiter = rateLimit({
   store: new RedisStore({
+    sendCommand: (...args) => redisClient.sendCommand(args), // Adapt for node-redis
     client: redisClient,
     prefix: "rate_limit:",
   }),

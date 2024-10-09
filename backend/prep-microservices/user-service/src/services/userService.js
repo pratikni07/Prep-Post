@@ -12,12 +12,19 @@ const producer = kafka.producer();
 
 class UserService {
   async createUser(userData) {
+    // Check if the user already exists
+    const existingUser = await User.findOne({ email: userData.email });
+    if (existingUser) {
+      throw new Error("Email already exists.");
+    }
+
     const user = new User(userData);
     await user.save();
-    await producer.send({
-      topic: "user-created",
-      messages: [{ value: JSON.stringify(user) }],
-    });
+    // Uncomment this to send a message to Kafka after user creation
+    // await producer.send({
+    //   topic: "user-created",
+    //   messages: [{ value: JSON.stringify(user) }],
+    // });
     return user;
   }
 

@@ -12,12 +12,16 @@ const logger = require("./utils/logger");
 const app = express();
 
 // Connect to MongoDB
+// Connect to MongoDB
 mongoose
-  .connect(config.mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useCreateIndex: true,
-  })
+  .connect(
+    "mongodb+srv://pratik12nikat:pratik123@users.3tmnq.mongodb.net/?retryWrites=true&w=majority&appName=users",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      // useCreateIndex: true, // REMOVE THIS LINE
+    }
+  )
   .then(() => logger.info("Connected to MongoDB"))
   .catch((err) => logger.error("MongoDB connection error:", err));
 
